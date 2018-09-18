@@ -1,22 +1,8 @@
 const LichessApi = require("./LichessApi");
 
 const RobotUser = require("./RobotUser");
-const PatzerPlayer = require("./bots/PatzerPlayer");
-const AntiPatzerPlayer = require("./bots/AntiPatzerPlayer");
-
-/**
- * Start a RobotUser (lichess account defined by API_TOKEN) that listens for challenges
- * and spawns games for unrated challenges. A player object must be supplied that can
- * produce the next move to play given the previous moves.
- *
- * Token can be created on BOT accounts at https://lichess.org/account/oauth/token/create
- * Put the token in the shell environment with
- *
- * export API_TOKEN=xxxxxxxxxxxxxx
- * yarn install
- * yarn start
- *
- */
+const PatzerPlayer = require("./bots/IronBot");
+/* const AntiPatzerPlayer = require("./bots/AntiPatzerPlayer"); */
 
 async function startBot(token, player) {
   if (token) {
@@ -29,8 +15,8 @@ async function startBot(token, player) {
 async function begin() {
   var links = "<h1>Challenge:</h1><br/>";
 
-  links += await startBot(process.env.API_TOKEN, new PatzerPlayer());
-  links += await startBot(process.env.API_TOKEN_SWARM, new AntiPatzerPlayer());
+  links += await startBot(process.env.API_TOKEN, new IronBot());
+  /* links += await startBot(process.env.API_TOKEN_SWARM, new AntiPatzerPlayer()); */
 
   // heroku wakeup server (not necessary otherwise)
 

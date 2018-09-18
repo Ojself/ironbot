@@ -1,14 +1,13 @@
 const LichessApi = require("./LichessApi");
 const Game = require("./Game");
 
-/**
- * RobotUser listens for challenges and spawns Games on accepting.
- *
+/*
+  RobotUser listens for challenges and spawns Games on accepting.
  */
 class RobotUser {
-  /**
-   * Initialise with access token to lichess and a player algorithm.
-   */
+  /* 
+    Initialise with access token to lichess and a player algorithm.
+    */
   constructor(api, player) {
     this.api = api;
     this.player = player;
