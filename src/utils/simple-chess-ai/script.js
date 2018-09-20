@@ -9,16 +9,18 @@ var minimaxRoot = function(depth, game, isMaximisingPlayer, UCI) {
     var bestMove = -9999;
     var bestMoveFound;
 
-    let bestMoveObj = null;
+    let currentBestMoveObj = {};
+    let bestMoveObj = {};
 
     for(var i = 0; i < newGameMoves.length; i++) {
         var newGameMove = newGameMoves[i]
-        bestMoveObj = game.ugly_move(newGameMove);
+        currentBestMoveObj = game.ugly_move(newGameMove);
         var value = minimax(depth - 1, game, -10000, 10000, !isMaximisingPlayer);
         game.undo();
         if(value >= bestMove) {
             bestMove = value;
             bestMoveFound = newGameMove;
+            bestMoveObj = currentBestMoveObj;
         }
     }
 
@@ -210,6 +212,6 @@ module.exports = class SimpleChessAI {
     }
 
     search(depth) {
-        return minimaxRoot(depth, game, game.turn() === 'w', true);
+        return minimaxRoot(depth, game, true, true);
     }
 };
