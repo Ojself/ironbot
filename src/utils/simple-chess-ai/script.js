@@ -212,6 +212,6 @@ module.exports = class SimpleChessAI {
     }
 
     search(depth) {
-        return minimaxRoot(depth, game, game.turn() === 'w', true);
+        return minimaxRoot(depth, game, game.turn() === 'b', true);
     }
 };
