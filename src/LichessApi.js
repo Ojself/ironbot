@@ -2,16 +2,15 @@ const axios = require("axios");
 const oboe = require("oboe");
 /**
  * Programatic interface to the web API of lichess https://lichess.org/api#tag/Chess-Bot
- *  
+ *
  */
 class LichessApi {
-
   /**
    * Initialise with access token from https://lichess.org/account/oauth/token/create.
    */
   constructor(token) {
     this.baseURL = "https://lichess.org/";
-    this.headers = { "Authorization": `Bearer ${token}` };
+    this.headers = { Authorization: `Bearer ${token}` };
     this.axiosConfig = {
       baseURL: this.baseURL,
       headers: this.headers
@@ -68,34 +67,37 @@ class LichessApi {
 
   get(URL) {
     console.log(`GET ${URL}`);
-    return axios.get(URL + "?v=" + Date.now(), this.axiosConfig)
+    return axios
+      .get(URL + "?v=" + Date.now(), this.axiosConfig)
       .then(this.logAndReturn)
       .catch(err => console.log(err));
   }
 
   post(URL, body) {
     console.log(`POST ${URL} ` + JSON.stringify(body || {}));
-    return axios.post(URL, body || {}, this.axiosConfig)
+    return axios
+      .post(URL, body || {}, this.axiosConfig)
       .then(this.logAndReturn)
       .catch(err => console.log(err.response || err));
   }
 
   /**
    * Connect to stream with handler.
-   * 
+   *
    * The axios library does not support streams in the browser so use oboe.
    */
   stream(URL, handler) {
     console.log(`GET ${URL} stream`);
     oboe({
-        method: "GET",
-        url: this.baseURL + URL,
-        headers: this.headers,
-      })
+      method: "GET",
+      url: this.baseURL + URL,
+      headers: this.headers
+    })
       .node("!", function(data) {
         console.log("STREAM data : " + JSON.stringify(data));
         handler(data);
-      }).fail(function(errorReport) {
+      })
+      .fail(function(errorReport) {
         console.error(JSON.stringify(errorReport));
       });
   }

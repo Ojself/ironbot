@@ -1,22 +1,19 @@
 const LichessApi = require("./LichessApi");
-
 const RobotUser = require("./RobotUser");
-const PatzerPlayer = require("./bots/PatzerPlayer");
-const AntiPatzerPlayer = require("./bots/AntiPatzerPlayer");
+const IronBot = require("./bots/IronBot");
 
 async function startBot(token, player) {
   if (token) {
     const robot = new RobotUser(new LichessApi(token), player);
     const username = (await robot.start()).data.username;
-    return `<a href="https://lichess.org/@/${username}">${username}</a> on lichess.</h1><br/>`;
+    return `<a href="https://lichess.org/@/${username}">${username}</a> on lichess.</h1>`;
   }
 }
 
 async function begin() {
-  var links = "<h1>Challenge:</h1><br/>";
+  var links = "<h1>Challenge:</h1>";
 
-  links += await startBot(process.env.API_TOKEN, new PatzerPlayer());
-  links += await startBot(process.env.API_TOKEN_SWARM, new AntiPatzerPlayer());
+  links += await startBot(process.env.API_TOKEN, new IronBot());
 
   // heroku wakeup server (not necessary otherwise)
 

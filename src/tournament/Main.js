@@ -3,12 +3,14 @@ const PatzerPlayer = require("../bots/PatzerPlayer");
 const SwarmKingPlayer = require("../bots/SwarmKingPlayer");
 const RandomPlayer = require("../bots/RandomPlayer");
 const AntiPatzerPlayer = require("../bots/AntiPatzerPlayer");
+const IronBot = require("../bots/IronBot");
 
 const players = [
   new PatzerPlayer(),
   new SwarmKingPlayer(),
   new RandomPlayer(),
-  new AntiPatzerPlayer()
+  new AntiPatzerPlayer(),
+  new IronBot()
 ];
 
 /**
@@ -28,7 +30,6 @@ while (round++ <= rounds) {
   tournament.playRound();
   console.log(tournament.getScores());
 }
-
 
 console.log("Results");
 console.log(tournament.getRank());

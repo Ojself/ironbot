@@ -1,8 +1,6 @@
 const ChessUtils = require("../utils/ChessUtils");
 
-/**
- * Pick a random legal move but prefer mates, checks and captures.
- */
+
 class IronBot {
   getNextMove(moves) {
     const chess = new ChessUtils();

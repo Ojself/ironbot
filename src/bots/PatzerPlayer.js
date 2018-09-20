@@ -12,14 +12,17 @@ class PatzerPlayer {
     const captures = legalMoves.filter(move => /x/.test(move.san));
 
     if (forcing.length) {
+      console.log(chess.pickRandomMove(forcing));
       return chess.pickRandomMove(forcing);
     }
 
     if (captures.length) {
+      console.log(chess.pickRandomMove(captures));
       return chess.pickRandomMove(captures);
     }
 
     if (legalMoves.length) {
+      console.log(chess.pickRandomMove(legalMoves));
       return chess.pickRandomMove(legalMoves);
     }
   }
