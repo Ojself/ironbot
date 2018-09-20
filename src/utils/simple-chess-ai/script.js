@@ -1,3 +1,5 @@
+const Chess = require('./lib/js/chess.js').Chess;
+
 var board,
     game = new Chess();
 
