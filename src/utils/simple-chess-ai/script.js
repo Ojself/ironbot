@@ -187,7 +187,9 @@ var getPieceValue = function (piece, x, y) {
 };
 
 module.exports = class SimpleChessAI {
-    constructor() { }
+    constructor() {
+        game = new Chess();
+    }
 
     makeUCIMove(UCIMove) {
         if (UCIMove.length < 4 || UCIMove.length > 5) {
