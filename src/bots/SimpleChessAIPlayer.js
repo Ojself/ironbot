@@ -1,6 +1,6 @@
 const SimpleChessAIEngine = require("../utils/simple-chess-ai/script.js");
 
-/**
+/**heroku logs --source app
  * Use Simple-Chess-AI.
  */
 class SimpleChessAIPlayer {
@@ -8,7 +8,7 @@ class SimpleChessAIPlayer {
     const SimpleChessAI = new SimpleChessAIEngine();
     SimpleChessAI.applyMoves(moves);
 
-    this.setDepth(3);
+    this.setDepth(4);
 
     const bestMoveUCI = SimpleChessAI.search(this.depth);
     return bestMoveUCI;
