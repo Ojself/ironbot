@@ -1,6 +1,7 @@
 const LichessApi = require("./LichessApi");
 const RobotUser = require("./RobotUser");
 const IronBot = require("./bots/IronBot");
+const SimpleChessAIPlayer = require("./bots/SimpleChessAIPlayer");
 
 async function startBot(token, player) {
   if (token) {
@@ -13,7 +14,7 @@ async function startBot(token, player) {
 async function begin() {
   var links = "<h1>Challenge:</h1>";
 
-  links += await startBot(process.env.API_TOKEN, new IronBot());
+  links += await startBot(process.env.API_TOKEN, new SimpleChessAIPlayer());
 
   // heroku wakeup server (not necessary otherwise)
 
