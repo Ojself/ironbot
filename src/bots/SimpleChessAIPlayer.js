@@ -8,7 +8,7 @@ class SimpleChessAIPlayer {
     const SimpleChessAI = new SimpleChessAIEngine();
     SimpleChessAI.applyMoves(moves);
 
-    this.setDepth(5);
+    this.setDepth(4);
 
     const bestMoveUCI = SimpleChessAI.search(this.depth);
     return bestMoveUCI;
